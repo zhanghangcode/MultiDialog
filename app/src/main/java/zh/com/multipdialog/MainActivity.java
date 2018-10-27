@@ -81,8 +81,11 @@ public class MainActivity extends AppCompatActivity {
         String string = getSharedPreferences("tag", MODE_PRIVATE).getString("positions", "2");
         int i = Integer.parseInt(string);
         HighPickerDialog.Builder builder = new HighPickerDialog.Builder(this,i);
-        List<String> data = Arrays.asList(new String[]{"175cm", "175", "190cm", "200cm", "181", "175", "180", "190", "200", "181", "175", "180", "190", "200", "181"});
 
+        List<String> data = new ArrayList<>();
+        for (int l = 150; l < 200; l++) {
+            data.add(l + "cm");
+        }
         HighPickerDialog dialog = builder.setUnit("cm").setData(data).setSelection(1).setTitle("标题")
                 .setOnDataSelectedListener(new HighPickerDialog.OnDataSelectedListener() {
                     @Override
