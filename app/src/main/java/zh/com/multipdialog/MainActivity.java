@@ -151,11 +151,13 @@ public class MainActivity extends AppCompatActivity {
         String s = split[0];
         String s1 = split[1];
         String s2 = split[2];
+        //分割之后得到的并不是具体的时间，而是年，月，日的位置。
         int i1 = Integer.parseInt(s);
         int i2 = Integer.parseInt(s1);
         int i3 = Integer.parseInt(s2);
-        Log.e("Tag",i1+"年"+i2+"月"+i3+"日");
+        //这里直接创建 DatePickerDialog,同时把值传递给构造方法
         DatePickerDialog.Builder builder=new DatePickerDialog.Builder(this,i1,i2,i3);
+        //通过builder设置时间
        DatePickerDialog dialog=builder.setOnDateSelectedListener(new DatePickerDialog.OnDateSelectedListener() {
            @Override
            public void onDateSelected(int[] dates) {
@@ -165,10 +167,11 @@ public class MainActivity extends AppCompatActivity {
            @Override
            public void setCurrentItem(int positionYear, int positionMonth, int positionDay) {
                Log.e("Tag","年"+positionYear+"月"+positionMonth+"日"+positionDay);
+               //设置完成时间之后,保存数据。用于下次回显数据。
                getSharedPreferences("tag",MODE_PRIVATE).edit().putString("date",positionYear+"#"+positionMonth+"#"+positionDay).commit();
            }
        }).create();
-
+        //最后显示Dialog
         dialog.show();
     }
 
@@ -176,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
      * 省市联动的dialog
      */
     private final void showDialogRegion() {
+
         RegionPickerDialog.Builder builder = new RegionPickerDialog.Builder(this);
 
         RegionPickerDialog dialog = builder.setOnRegionSelectedListener(new RegionPickerDialog.OnRegionSelectedListener() {
