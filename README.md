@@ -11,3 +11,4 @@
 dependencies {
     compile 'zh.MyLibrary.dialog_picker:dialog_picker:0.1.0'
 }
+### 使用方法解析 ：https://www.jianshu.com/p/788cec4d8f17
